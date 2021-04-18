@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fr.neamar.kiss.ui.slideuppanel.SlidingUpPanelLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/panel_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top"
+    app:umanoFadeColor="@android:color/transparent"
+    app:umanoPanelHeight="0dp"
+    app:umanoOverlay="@color/kiss_green_semitransparent"
+    app:umanoShadowHeight="0dp">
+
+    <LinearLayout
+        android:id="@+id/widgetLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/searchEditText"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"></LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/search_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <fr.neamar.kiss.ui.SearchEditText
+            android:id="@+id/searchEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="1dp"
+            android:background="@drawable/rounded_search_bar_pre21_light"
+            android:hint="@string/ui_search_hint"
+            android:imeOptions="flagNoExtractUi|actionSearch"
+            android:importantForAutofill="no"
+            android:inputType="textVisiblePassword|textNoSuggestions"
+            android:paddingStart="15dp"
+            android:paddingLeft="15dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:singleLine="true"
+            android:textColor="?attr/searchColor"
+            android:textColorHint="?android:attr/textColorSecondary"
+            android:textCursorDrawable="@null"
+            android:textSize="16sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/searchEditText"
+            android:layout_marginTop="10dp"
+            app:stackFromEnd="true" />
+    </RelativeLayout>
+</fr.neamar.kiss.ui.slideuppanel.SlidingUpPanelLayout>

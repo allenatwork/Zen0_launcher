@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="listBackgroundColor" format="reference|color" />
+    <attr name="resultColor" format="reference|color" />
+    <attr name="resultShadowColor" format="reference|color" />
+    <attr name="searchColor" format="reference|color" />
+    <attr name="searchBackgroundColor" format="reference|color" />
+    <attr name="searchBackgroundOutline" format="reference|color" />
+    <attr name="dividerDrawable" format="reference" />
+    <attr name="appSelectableItemBackground" format="reference" />
+    <attr name="textShadowRadius" format="reference|float" />
+
+    <attr name="resultIconSize" format="reference|dimension" />
+    <attr name="resultSubIconSize" format="reference|dimension" />
+    <attr name="resultTitleSize" format="reference|dimension" />
+    <attr name="resultSubtitleSize" format="reference|dimension" />
+    <attr name="resultButtonHeight" format="reference|dimension" />
+    <declare-styleable name="LightTextView">
+        <attr name="android:text" />
+        <attr name="android:fontFamily" />
+        <attr name="android:textSize" />
+        <attr name="android:textColor" />
+        <attr name="android:shadowColor" />
+        <attr name="android:shadowDx" />
+        <attr name="android:shadowDy" />
+        <attr name="android:shadowRadius" />
+        <attr name="android:maxLines" />
+
+        <attr name="android:gravity">
+        </attr>
+
+        <attr name="android:typeface">
+        </attr>
+
+        <attr name="android:textStyle">
+        </attr>
+
+    </declare-styleable>
+
+    <declare-styleable name="SlidingUpPanelLayout">
+        <attr name="umanoPanelHeight" format="dimension" />
+        <attr name="umanoShadowHeight" format="dimension" />
+        <attr name="umanoParallaxOffset" format="dimension" />
+        <attr name="umanoFadeColor" format="color" />
+        <attr name="umanoFlingVelocity" format="integer" />
+        <attr name="umanoDragView" format="reference" />
+        <attr name="umanoScrollableView" format="reference" />
+        <attr name="umanoOverlay" format="boolean"/>
+        <attr name="umanoClipPanel" format="boolean"/>
+        <attr name="umanoAnchorPoint" format="float" />
+        <attr name="umanoInitialState" format="enum">
+            <enum name="expanded" value="0" />
+            <enum name="collapsed" value="1" />
+            <enum name="anchored" value="2" />
+            <enum name="hidden" value="3" />
+        </attr>
+        <attr name="umanoScrollInterpolator" format="reference" />
+    </declare-styleable>
+</resources>
