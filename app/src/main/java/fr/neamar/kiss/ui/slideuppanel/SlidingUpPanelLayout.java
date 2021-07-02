@@ -21,7 +21,6 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
 
-import androidx.core.view.MotionEventCompat;
 import androidx.core.view.ViewCompat;
 
 import java.util.List;
@@ -893,7 +892,7 @@ public class SlidingUpPanelLayout extends ViewGroup {
             return false;
         }
 
-        final int action = MotionEventCompat.getActionMasked(ev);
+        final int action = ev.getAction();
         final float x = ev.getX();
         final float y = ev.getY();
         final float adx = Math.abs(x - mInitialMotionX);
@@ -945,42 +944,11 @@ public class SlidingUpPanelLayout extends ViewGroup {
         return mDragHelper.shouldInterceptTouchEvent(ev);
     }
 
-    GestureDetector gd = new GestureDetector(this.getContext(),
-            new GestureDetector.SimpleOnGestureListener() {
-        @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-            float directionY = e2.getY() - e1.getY();
-            float directionX = e2.getX() - e1.getX();
-            if (Math.abs(directionX) > Math.abs(directionY)) {
-                if (directionX > 0) { // Gesture right
-                } else { // Gesture left
-                }
-            } else {
-                if (directionY > 0) { // Gesture down
-                } else { // Gesture up
-                    Tool.hideKeyboard(SlidingUpPanelLayout.this);
-                }
-            }
-            return true;
-        }
-
-        @Override
-        public void onLongPress(MotionEvent e) {
-            super.onLongPress(e);
-        }
-
-        @Override
-        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-            return super.onScroll(e1, e2, distanceX, distanceY);
-        }
-    });
-
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         if (!isEnabled() || !isTouchEnabled()) {
             return super.onTouchEvent(ev);
         }
-        gd.onTouchEvent(ev);
         try {
             mDragHelper.processTouchEvent(ev);
             return true;
@@ -991,7 +959,7 @@ public class SlidingUpPanelLayout extends ViewGroup {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        final int action = MotionEventCompat.getActionMasked(ev);
+        final int action = ev.getActionMasked();
 
         if (!isEnabled() || !isTouchEnabled() || (mIsUnableToDrag && action != MotionEvent.ACTION_DOWN)) {
             mDragHelper.abort();

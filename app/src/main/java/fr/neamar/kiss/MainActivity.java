@@ -252,7 +252,13 @@ public class MainActivity extends Activity implements QueryInterface,
                                             SlidingUpPanelLayout.PanelState previousState,
                                             SlidingUpPanelLayout.PanelState newState) {
                 Timber.d("onPanelStateChanged: old %s - new %s", previousState.toString(), newState.toString());
-                if (newState == SlidingUpPanelLayout.PanelState.COLLAPSED) {
+                if (newState == SlidingUpPanelLayout.PanelState.DRAGGING) {
+                    if (previousState == SlidingUpPanelLayout.PanelState.EXPANDED) {
+                        if (Tool.isKeyboardShowing(searchEditText)) {
+                            Tool.hideKeyboard(searchEditText);
+                        }
+                    }
+                } else if (newState == SlidingUpPanelLayout.PanelState.COLLAPSED) {
                     if (Tool.isKeyboardShowing(searchEditText)) {
                         Tool.hideKeyboard(searchEditText);
                     }
