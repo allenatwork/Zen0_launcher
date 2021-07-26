@@ -50,11 +50,11 @@ import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.Permission;
 import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
 import fr.neamar.kiss.utils.Tool;
+import fr.neamar.kiss.utils.Utilities;
 import fr.neamar.kiss.utils.Widgets;
 import timber.log.Timber;
 
 public class MainActivity extends Activity implements QueryInterface,
-        AlphabetRecycleView.OnCharaterSelected,
         View.OnTouchListener {
 
     public static final String START_LOAD = "fr.neamar.summon.START_LOAD";
@@ -373,7 +373,7 @@ public class MainActivity extends Activity implements QueryInterface,
         }
 
         // Calling super.onBackPressed() will quit the launcher, only do this if KISS is not the user's default home.
-        if (!isKissDefaultLauncher()) {
+        if (!Utilities.isKissDefaultLauncher(this)) {
             super.onBackPressed();
         }
     }
@@ -532,25 +532,5 @@ public class MainActivity extends Activity implements QueryInterface,
     public void dismissPopup() {
         if (mPopup != null)
             mPopup.dismiss();
-    }
-
-    public boolean isKissDefaultLauncher() {
-        String homePackage;
-        try {
-            Intent i = new Intent(Intent.ACTION_MAIN);
-            i.addCategory(Intent.CATEGORY_HOME);
-            PackageManager pm = getPackageManager();
-            final ResolveInfo mInfo = pm.resolveActivity(i, PackageManager.MATCH_DEFAULT_ONLY);
-            homePackage = mInfo.activityInfo.packageName;
-        } catch (Exception e) {
-            homePackage = "unknown";
-        }
-
-        return homePackage.equals(this.getPackageName());
-    }
-
-    @Override
-    public void onCharaterSelected(String c) {
-        //Todo: implement
     }
 }

@@ -3,6 +3,9 @@ package fr.neamar.kiss.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.view.View;
@@ -91,5 +94,20 @@ public class Utilities {
         public boolean cancel() {
             return cancel(false);
         }
+    }
+
+    public static boolean isKissDefaultLauncher(Context context) {
+        String homePackage;
+        try {
+            Intent i = new Intent(Intent.ACTION_MAIN);
+            i.addCategory(Intent.CATEGORY_HOME);
+            PackageManager pm = context.getPackageManager();
+            final ResolveInfo mInfo = pm.resolveActivity(i, PackageManager.MATCH_DEFAULT_ONLY);
+            homePackage = mInfo.activityInfo.packageName;
+        } catch (Exception e) {
+            homePackage = "unknown";
+        }
+
+        return homePackage.equals(context.getPackageName());
     }
 }
